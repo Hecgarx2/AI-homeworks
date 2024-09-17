@@ -4,9 +4,9 @@ import numpy as np
 class Plano:
     def __init__(self, inputs, outputs, bias, weights):
         self.fig, self.ax = plt.subplots()
-        self.ax.set_title("Perceptron")
-        self.ax.set_xlim(0, 4)
-        self.ax.set_ylim(-3, 4)
+        self.ax.set_title("Clasificación de A ∩ (B ∪ C)")
+        self.ax.set_xlim(-0.5, 1.5)
+        self.ax.set_ylim(-1, 2)
         self.ax.grid()
 
         for i in range(len(inputs)):
@@ -21,7 +21,7 @@ class Plano:
                 self.ax.annotate('({},{})'.format(inputs[i][0], inputs[i][1]),
                                  xy=(inputs[i][0], inputs[i][1]))
         
-        x = np.linspace(-3, 4, 100)
+        x = np.linspace(-0.5, 1.5, 100)
         # y = (w1x/w2) - (b/w2)
         m = -(weights[0] / weights[1]) 
         b = -(bias / weights[1])
@@ -59,7 +59,7 @@ class Perceptron:
                 # V(n) =  w1*x1 + w2*x2 + ... + wn*xn + b
                 v_n = np.dot(self.weights, self.inputs[i]) + self.bias
                 # Evaluar con función de activación
-                y_n = self.sign(v_n)
+                y_n = self.esc(v_n)
                 final_outputs[i] = y_n
                 if y_n != self.outputs[i]:
                     error = self.outputs[i] - y_n
@@ -67,10 +67,9 @@ class Perceptron:
                     self.adjust_weights(error, self.inputs[i])
         return final_outputs
 
-    # Función de activación signo
-    def sign(self, x):
-        if x > 0: return 1
-        elif x < 0: return -1
+    # Función de activación escalon
+    def esc(self, x):
+        if x >= 0: return 1
         else: return 0
 
     # Ajuste de pesos
@@ -82,11 +81,11 @@ class Perceptron:
         self.bias = new_bias
 
 if __name__ == "__main__":
-    outputs = np.array([1, -1, -1, 1])
-    inputs = np.array([[2, 1],
-                       [1, -1],
-                       [2, -2],
-                       [3, 1]])
+    outputs = np.array([0, 1, 0, 1])
+    inputs = np.array([[0, 0],
+                       [1, 1],
+                       [0, 1],
+                       [1, 1]])
     weights = np.random.rand(2)  # Pesos aleatorios entre 0 y 1
     bias = np.random.rand() # Bias aleatorio entre 0 y 1
     perceptron = Perceptron(inputs, outputs, weights, bias) # Perceptron con valores aleatorios
