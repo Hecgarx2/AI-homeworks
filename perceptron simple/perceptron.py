@@ -27,7 +27,7 @@ class Plano:
         b = -(bias / weights[1])
         # Calculo de la pendiente y=mx+b
         y =  m * x + b
-        self.ax.plot(x, y, label="Linea de descion", color="green")
+        self.ax.plot(x, y, label="Linea de decisión", color="green")
         self.ax.set_xlabel("X1")
         self.ax.set_ylabel("X2")
         self.ax.legend(loc = "upper right")
@@ -87,11 +87,11 @@ if __name__ == "__main__":
                        [1, -1],
                        [2, -2],
                        [3, 1]])
-    weights = np.random.rand(2)  # Pesos aleatorios entre 0 y 1
-    bias = np.random.rand() # Bias aleatorio entre 0 y 1
-    perceptron = Perceptron(inputs, outputs, weights, bias) # Perceptron con valores aleatorios
+    # weights = np.random.rand(2)  # Pesos aleatorios entre 0 y 1
+    # bias = np.random.rand() # Bias aleatorio entre 0 y 1
+    # perceptron = Perceptron(inputs, outputs, weights, bias) # Perceptron con valores aleatorios
 
-    # perceptron = Perceptron(inputs, outputs)
+    perceptron = Perceptron(inputs, outputs)
     final_outputs = perceptron.calculate()
     print("Salidas finales: ", final_outputs)
     final_weights = perceptron.get_weights()

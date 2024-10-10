@@ -16,8 +16,8 @@ class Plano:
                 self.ax.annotate('({},{})'.format(inputs[i][0], inputs[i][1]),
                                  xy=(inputs[i][0], inputs[i][1]))
             else:
-                self.ax.scatter(inputs[i][0], inputs[i][1], color='red', label='Clase -1' 
-                                if 'Clase -1' not in self.ax.get_legend_handles_labels()[1] else "")
+                self.ax.scatter(inputs[i][0], inputs[i][1], color='red', label='Clase 0' 
+                                if 'Clase 0' not in self.ax.get_legend_handles_labels()[1] else "")
                 self.ax.annotate('({},{})'.format(inputs[i][0], inputs[i][1]),
                                  xy=(inputs[i][0], inputs[i][1]))
         
@@ -27,7 +27,7 @@ class Plano:
         b = -(bias / weights[1])
         # Calculo de la pendiente y=mx+b
         y =  m * x + b
-        self.ax.plot(x, y, label="Linea de descion", color="green")
+        self.ax.plot(x, y, label="Linea de decisión", color="green")
         self.ax.set_xlabel("X1")
         self.ax.set_ylabel("X2")
         self.ax.legend(loc = "upper right")
@@ -90,7 +90,6 @@ if __name__ == "__main__":
     bias = np.random.rand() # Bias aleatorio entre 0 y 1
     perceptron = Perceptron(inputs, outputs, weights, bias) # Perceptron con valores aleatorios
 
-    # perceptron = Perceptron(inputs, outputs)
     final_outputs = perceptron.calculate()
     print("Salidas finales: ", final_outputs)
     final_weights = perceptron.get_weights()
