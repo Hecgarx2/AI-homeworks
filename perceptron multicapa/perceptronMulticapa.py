@@ -100,7 +100,7 @@ inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 outputs = np.array([[0], [1], [1], [0]])  # XOR
 
 # Crear y entrenar la red
-red = PerceptronMulticapa(n_inputs=2, n_ocultas=10, n_outputs=1)
+red = PerceptronMulticapa(n_inputs=2, n_ocultas=2, n_outputs=1)
 epochs = 2000
 for _ in range(epochs):
     salida = red.propagacion(inputs)
